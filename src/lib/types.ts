@@ -38,10 +38,10 @@ export const createAuthSchema = (type: "signup" | "signin") => {
 };
 
 export default interface AuthFormData {
-  username: string;
+  name?: string;
   email: string;
-  phoneNumber: string;
-  companyName: string;
+  phoneNumber?: string;
+  companyName?: string;
   password: string;
   confirmPassword?: string;
 }
