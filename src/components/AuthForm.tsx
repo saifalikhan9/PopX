@@ -23,7 +23,7 @@ import {
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { createAuthSchema } from "@/lib/types";
+import { createAuthSchema, type LoginFormValues,type SignupFormValues } from "@/lib/types";
 import type AuthFormData from "@/lib/types";
 
 
@@ -46,7 +46,7 @@ const AuthForm = ({ type, onSubmitForm, isLoading = false }: AuthFormProps) => {
       email: "",
       password: "",
       ...(isSignup
-        ? { name: "", phoneNumber: "", companyName: "", confirmPassword: "" }
+        ? { username: "", phoneNumber: "", companyName: "", confirmPassword: "" }
         : {}),
     },
   });
@@ -63,7 +63,7 @@ const AuthForm = ({ type, onSubmitForm, isLoading = false }: AuthFormProps) => {
   };
 
   interface FormInputFieldProps {
-    name: `${keyof z.infer<typeof FormSchema>}`;
+    name: keyof LoginFormValues| keyof SignupFormValues;
     label: string;
     type?: string;
     placeholder?: string;
@@ -95,7 +95,7 @@ const AuthForm = ({ type, onSubmitForm, isLoading = false }: AuthFormProps) => {
   );
 
   interface PasswordInputFieldProps {
-    name: keyof z.infer<typeof FormSchema>;
+    name: keyof LoginFormValues| keyof SignupFormValues;
     label: string;
     show: boolean;
     setShow: (value: boolean) => void;
